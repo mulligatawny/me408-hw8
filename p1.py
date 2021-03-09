@@ -31,8 +31,7 @@ A[-1,:] = 2*i**2
 # RHS
 b = np.zeros(int(N/2)+1)
 b[-1] = 2*0.75
-
-phi = np.linalg.solve(A, b)
-print(phi)
+print(A)
+#phi = np.linalg.solve(A, b)
 
 np.save('even.npy', phi)
