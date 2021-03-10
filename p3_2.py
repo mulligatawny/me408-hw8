@@ -50,7 +50,7 @@ while t < tf:
     u = un
     t = t + dt
 
-u_fd = np.load('fd.npy') # load finite difference solution
+u_fd = np.load('./data/p3/fd.npy') # load finite difference solution
 
 if not plot:
     plt.plot(x, np.real(un), 'ro-', label='Colloc.')

@@ -48,4 +48,4 @@ plt.ylabel('$u$')
 plt.legend()
 plt.show()
 
-np.save('fd.npy', u)
+np.save('./data/p3/fd.npy', u)
