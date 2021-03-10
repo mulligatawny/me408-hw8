@@ -1,9 +1,0 @@
-clear;
-close all;
-clc
-
-N = 9;
-Se = load("even.mat");
-phi_e = mge(9, diag(Se.A), diag(Se.A, 1), diag(Se.A, 2), Se.A(end,:), Se.b)
-So = load("odd.mat");
-phi_o = mge(8, diag(So.A), diag(So.A, 1), diag(So.A, 2), So.A(end,:), So.b)
