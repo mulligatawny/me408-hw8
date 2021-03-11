@@ -15,7 +15,10 @@ def compute_error(N):
         return -c*up
 
     print('Beginning time integration with N = {}'.format(N))
-    dt = 0.01
+    if N > 1000:
+        dt = 0.002
+    else:
+        dt = 0.01
     t = 0.0
     tf = 10*np.sqrt(2/3)*np.pi
     u = u0
@@ -42,7 +45,7 @@ def compute_error(N):
     print('Completed. Time is {}'.format(t))
     return np.max(np.abs(u0 - u))
 
-N = np.array([32, 64, 128, 256, 512])
+N = np.array([32, 64, 128, 256, 512, 1024, 2048])
 e = np.zeros(len(N))
 
 for i in range(len(N)):
