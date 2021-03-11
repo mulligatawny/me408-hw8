@@ -1,3 +1,7 @@
+###############################################################################
+# Matrix Operators for Spectral Numerical Differentiation (Moin pp. 185-194)  #
+###############################################################################
+
 import numpy as np
 
 def fourier_coll_der_mat(N):
