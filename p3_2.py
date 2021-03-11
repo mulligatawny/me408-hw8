@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 from matplotlib.ticker import LinearLocator
 
-plot = 1 # toggle between 2D/3D plots
+plot = 0 # toggle between 2D/3D plots
 
 N = 512
 nu = 0.5
