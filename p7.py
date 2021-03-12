@@ -1,8 +1,13 @@
+###############################################################################
+# 1D Forced Advection Equation Solver with Chebyshev Collocation Matrix and   #
+# Trapezoidal Time Integreation                                               #
+###############################################################################
+
 import numpy as np
 import matplotlib.pyplot as plt
 from subroutines import coll_der_mat
 
-N = 32
+N = 64
 t = np.linspace(0, np.pi, N+1)
 x = np.cos(t)
 u0 = np.zeros(N+1)
@@ -18,6 +23,7 @@ while t < tf:
     pf2 = np.eye(N+1) - dt*D
     pf = pf1 @ pf2
     un = np.dot(pf, u)
+    # BC
     if t < 0.5:
         un[-1] = np.sin(2*np.pi*t)
     else:
@@ -28,6 +34,14 @@ while t < tf:
 ue = np.sin(2*np.pi*(tf - x/2 - 1/2))
 ue[x>2*tf-1] = 0
 ue[x<2*tf-2] = 0
-plt.plot(x, ue)
-plt.plot(x, u)
-plt.show()
+plt.plot(x, ue, 'k-', label='exact')
+plt.plot(x, u, 'ro', label='spectral')
+plt.xlabel('$x$')
+plt.ylabel('$u$')
+plt.title('Solution at t = {:.2f}'.format(tf))
+plt.legend()
+#plt.show()
+
+from sklearn.metrics import mean_squared_error
+mse = mean_squared_error(u, ue)
+print(mse)

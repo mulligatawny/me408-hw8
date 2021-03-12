@@ -25,7 +25,7 @@ def fourier_coll_der_mat(N):
 
 def cheby_coll_der_mat(N, x):
     """
-    Computes the matrix form of the Fourier Collocation Derivative
+    Computes the matrix form of the Chebyshev Collocation Derivative
     Parameters:
         N (int)        : number of collocation points
         x (array_like) : Chebyshev grid points 

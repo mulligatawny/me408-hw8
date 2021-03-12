@@ -1,9 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-N = 32
-t = np.linspace(0, np.pi, N+1)
-x = np.flip(np.cos(t))
+N = 1024
+#t = np.linspace(0, np.pi, N+1)
+#x = np.flip(np.cos(t))
+x = np.linspace(-1,1, N+1)
 u0 = np.zeros(N+1)
 
 t = 0
