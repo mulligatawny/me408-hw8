@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from ge import mge
 from ge import sge
 
-N = 16
+N = 6
 alpha = 0.5
 gamma = np.ones(N+1)
 gamma[-1] = 0
@@ -30,6 +30,7 @@ A[-1,:] = 2*i**2
 b = np.zeros(int(N/2)+1)
 b[-1] = 2*0.75
 
+print(A)
 # solve using pivoting, mge and sge
 phi_e_exact = np.linalg.solve(A, b)
 phi_e_mge = mge.mge(int(N/2+1), np.diagonal(A), np.diagonal(A,1), \

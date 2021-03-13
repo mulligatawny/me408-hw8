@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from ge import mge
 from ge import sge
 
-N = 16
+N = 6
 alpha = 0.5
 gamma = np.ones(N+2)
 gamma[-1] = 0
@@ -66,4 +66,4 @@ plt.ylim([-0.1, 2])
 plt.xlabel('$n$')
 plt.ylabel('$a_n$')
 plt.legend()
-plt.show()
+#plt.show()

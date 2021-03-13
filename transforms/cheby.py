@@ -51,7 +51,7 @@ def cheby_der(f):
     Parameters:
         f  (array_like) : function
     Returns:
-        fp (array)      : derivative of f
+        phi (array)      : chebyshev coefficients of derivative of f
 
     """
     N = len(f)-1
