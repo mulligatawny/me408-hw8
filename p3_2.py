@@ -10,7 +10,7 @@ from matplotlib.ticker import LinearLocator
 
 plot = 0 # toggle between 2D/3D plots
 
-N = 512
+N = 256
 nu = 0.5
 x = np.linspace(0, 2*np.pi, N)
 u0 = np.exp(-100*(x-2)**2)
@@ -23,7 +23,7 @@ def fun(t, u):
     up = np.fft.ifft(np.fft.ifftshift(ukp))
     return -c*up
 
-dt = 0.01
+dt = 0.04
 t = 0.0
 tf = 16
 u = u0
@@ -54,7 +54,7 @@ u_fd = np.load('./data/p3/fd.npy') # load finite difference solution
 
 if not plot:
     plt.plot(x, np.real(un), 'ro-', label='Colloc.')
-    plt.plot(x, np.real(u_fd), 'k-', label='F.D')
+#    plt.plot(x, np.real(u_fd), 'k-', label='F.D')
     plt.xlabel('$x$')
     plt.ylabel('$u(t = 16)$')
     plt.title('N = {}'.format(N))

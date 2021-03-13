@@ -9,7 +9,7 @@ def combine_coeffs(O, E):
     return S
 
 nu = 0.5
-dt = 0.001
+dt = 0.00001
 N = 16
 tc = np.linspace(0, np.pi, N+2)
 x = np.cos(tc)
@@ -23,7 +23,7 @@ c = np.ones(N+1)
 c[0] = 2
 c[-1] = 2
 
-
+# even-numbered n
 Ae = np.zeros((int(N/2+1), int(N/2+1)), dtype='float')
 ie = np.linspace(0, N, int(N/2+1)).astype(int)
 je = ie[1:]
@@ -38,7 +38,7 @@ np.fill_diagonal(Ae, c[ke]*alpha/(4*je*(je-1)))
 # fill bottom row with BC
 Ae[-1,:] = np.ones(int(N/2+1))
 
-
+# odd-numbered n
 Ao = np.zeros((int(N/2), int(N/2)), dtype='float')
 io = np.linspace(1, N-1, int(N/2), dtype='float').astype(int)
 jo = io[1:]
@@ -55,12 +55,12 @@ Ao[-1,:] = np.ones(int(N/2))
 
 
 u = cheby.cheby(u0)
-tf = 0.5
+tf = 2
 t = 0.0
 
-while t < 0.0013:
-    ############### EVEN-NUMBERED N ####################################
-    # RHS
+while t < tf:
+
+    # even-numbered n
     pr1e = alpha*u
     uie = cheby.icheby(u)
     pr2e = cheby.cheby(cheby.cheby_der(cheby.cheby_der(uie)))
@@ -72,11 +72,9 @@ while t < 0.0013:
     be[:-1] = be[:-1] - c[ke]*qe[ke]/(4*je*(je-1))
     be[:-1] = be[:-1] - gamma[je+2]*qe[je+2]/(4*je*(je+1))
     be[-1] = 0.0
-    print(be)
     phi_e = np.linalg.solve(Ae, be)
 
-    ################ ODD-NUMBERED N ####################################
-    # RHS
+    # odd-numbered n
     pr1o = alpha*u
     uio = cheby.icheby(u)
     pr2o = cheby.cheby(cheby.cheby_der(cheby.cheby_der(uio)))
@@ -97,5 +95,12 @@ while t < 0.0013:
 
 ufinal = cheby.icheby(u)
 
-plt.plot(np.real(ufinal))
-#plt.show()
+plt.plot(np.linspace(-1,1,N+1), np.real(ufinal), 'ro-', label='spectral')
+xe = np.linspace(-1,1,256)
+u0e = 1 - xe**8
+plt.plot(xe, u0e, 'k-', label='I.C.')
+plt.xlabel('$x$')
+plt.ylabel('$u$')
+plt.title('Solution at t = {:.3f}'.format(t))
+plt.legend()
+plt.show()

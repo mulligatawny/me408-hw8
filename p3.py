@@ -6,7 +6,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-N = 512
+N = 256
 x = np.linspace(0, 2*np.pi, N)
 dx = 2*np.pi/(N-1)
 u0 = np.exp(-100*(x-2)**2)

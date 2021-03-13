@@ -80,17 +80,18 @@ def FD_sol(N):
     ue[x>2*tf-1] = 0
     ue[x<2*tf-2] = 0
 
-    return mean_squared_error(u, ue)
+    return np.sqrt(mean_squared_error(u, ue))
 
 N = np.array([8, 16, 32, 64, 128])
 err = np.zeros(len(N))
 
 for i in range(len(N)):
-#    err[i] = spectral_sol(N[i])
-    err[i] = FD_sol(N[i])
+    err[i] = spectral_sol(N[i])
+#    err[i] = FD_sol(N[i])
     
-plt.loglog(N,err, 'o-', color='orangered', label='finite diff.')
-plt.loglog(N, 2/N**2, 'k-', label='slope-2')
+plt.loglog(N,err, 'o-', color='orangered', label='spectral')
+plt.loglog(N, 3/N**2, 'k-', label='slope-2')
+plt.loglog(N, 3/N**3, 'g-', label='slope-3')
 plt.xlabel('$N$')
 plt.ylabel('RMS error')
 plt.grid(which='both')

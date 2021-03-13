@@ -1,14 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-N = 1024
+N = 32
 #t = np.linspace(0, np.pi, N+1)
 #x = np.flip(np.cos(t))
 x = np.linspace(-1,1, N+1)
 u0 = np.zeros(N+1)
 
 t = 0
-tf = 0.5
+tf = 0.9
 dt = 0.0005
 dx = 2/N
 u = u0
@@ -43,6 +43,10 @@ while t < tf:
 ue = np.sin(2*np.pi*(tf - x/2 - 1/2))
 ue[x>2*tf-1] = 0
 ue[x<2*tf-2] = 0
-plt.plot(x, u)
-plt.plot(x, ue)
+plt.plot(x, ue, 'k-', label='exact')
+plt.plot(x, u, 'go', label='finite diff')
+plt.xlabel('$x$')
+plt.ylabel('$u$')
+plt.title('Solution at t = {:.2f}'.format(tf))
+plt.legend()
 plt.show()
